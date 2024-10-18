@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,4 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+##--------------------------------------------- Larvel Socialite
+Route::prefix('github')->name('socialite.')->controller(SocialiteController::class)->group(function () {
+    Route::get('login', 'login')->name('login');
+    Route::get('redirect', 'redirect')->name('redirect');
+});
